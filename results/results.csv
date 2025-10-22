@@ -1,0 +1,4 @@
+Dataset,Best_Depth,Best_Bag_Size,Best_Features,Best_Trees,Test_F1,Test_F1_Std,Test_Accuracy,Precision,Recall
+Breast Cancer,5,50%,16,500,0.9091,0.0027,0.9287,0.8690,0.9531
+CDC Diabetes,10,50%,10,200,0.7619,0.0006,0.7486,0.7236,0.8046
+Letter Recognition,30,100%,4,500,0.9669,0.0009,0.9668,0.9672,0.9668

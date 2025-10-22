@@ -1,0 +1,474 @@
+RANDOM FOREST HYPERPARAMETER ANALYSIS - COMPLETE RESULTS
+Primary Metric: F1 Score
+Generated: 2025-10-21 17:10:20
+
+STATISTICAL VALIDATION METHODOLOGY
+Cross-Validation: 5-fold Stratified K-Fold
+Independent Runs: 5 per configuration
+Statistical Testing: Paired t-tests with Bonferroni correction
+Significance Level: alpha = 0.05
+Confidence Intervals: 95 percent
+Scoring: F1 (binary) or F1-weighted (multiclass)
+
+======================================================================
+DATASET: Breast Cancer
+======================================================================
+
+Dataset Statistics:
+  Training Samples: 398
+  Testing Samples: 171
+  Number of Features: 32
+  Number of Classes: 2
+  Scoring Method: f1
+
+OPTIMAL HYPERPARAMETERS:
+  Best Max Depth: 5
+  Best Bag Size: 0.5
+  Best Max Features: 16
+  Best n_estimators: 500
+
+FINAL MODEL PERFORMANCE:
+  Test F1-Score:  0.9091 +/- 0.0027
+  Test Accuracy:  0.9287 +/- 0.0023
+  Precision:      0.8690 +/- 0.0049
+  Recall:         0.9531 +/- 0.0000
+
+EXPERIMENT 1: TREE DEPTH IMPACT
+Depth      CV F1        CV Std       95% CI Lower    95% CI Upper    Train F1    
+1          0.9035       0.0615       0.8776          0.9294          0.9230      
+2          0.9155       0.0614       0.8896          0.9414          0.9366      
+3          0.9135       0.0572       0.8894          0.9376          0.9575      
+5          0.9231       0.0503       0.9019          0.9443          0.9885      
+7          0.9205       0.0523       0.8985          0.9425          1.0000      
+10         0.9217       0.0522       0.8997          0.9437          1.0000      
+15         0.9217       0.0522       0.8997          0.9437          1.0000      
+20         0.9217       0.0522       0.8997          0.9437          1.0000      
+25         0.9217       0.0522       0.8997          0.9437          1.0000      
+30         0.9217       0.0522       0.8997          0.9437          1.0000      
+None       0.9217       0.0522       0.8997          0.9437          1.0000      
+
+Best Depth: 5
+Best CV F1: 0.9231
+
+Statistical Testing (Paired t-tests with Bonferroni correction):
+Baseline: depth=5
+Comparison      p-value         Significant     Better    
+1               0.001897        Yes             No        
+2               0.030760        No              No        
+3               0.006674        No              No        
+7               0.249013        No              No        
+10              0.406153        No              No        
+15              0.406153        No              No        
+20              0.406153        No              No        
+25              0.406153        No              No        
+30              0.406153        No              No        
+None            0.406153        No              No        
+
+EXPERIMENT 2: DEPTH × TREES RELATIONSHIP
+Depth      n_Trees      CV F1        CV Std      
+3          10           0.9042       0.0061      
+3          50           0.9051       0.0043      
+3          100          0.9135       0.0055      
+3          200          0.9109       0.0040      
+7          10           0.9289       0.0030      
+7          50           0.9212       0.0050      
+7          100          0.9205       0.0058      
+7          200          0.9188       0.0020      
+15         10           0.9274       0.0041      
+15         50           0.9227       0.0052      
+15         100          0.9217       0.0027      
+15         200          0.9196       0.0036      
+None       10           0.9274       0.0041      
+None       50           0.9227       0.0052      
+None       100          0.9217       0.0027      
+None       200          0.9196       0.0036      
+
+EXPERIMENT 3: BAG SIZE IMPACT
+Bag Size        CV F1        CV Std       95% CI Lower    95% CI Upper   
+30%             0.9179       0.0569       0.8940          0.9419         
+50%             0.9237       0.0475       0.9037          0.9437         
+70%             0.9202       0.0530       0.8979          0.9425         
+90%             0.9176       0.0515       0.8959          0.9393         
+100%            0.9231       0.0503       0.9019          0.9443         
+
+Best Bag Size: 0.5
+Best CV F1: 0.9237
+
+EXPERIMENT 4: FEATURE SELECTION IMPACT
+Features     CV F1        CV Std       95% CI Lower    95% CI Upper   
+1            0.9167       0.0538       0.8941          0.9394         
+5            0.9231       0.0503       0.9019          0.9443         
+16           0.9303       0.0435       0.9119          0.9486         
+32           0.9169       0.0415       0.8995          0.9344         
+None         0.9169       0.0415       0.8995          0.9344         
+
+Best Features: 16
+Best CV F1: 0.9303
+
+Statistical Testing (Paired t-tests with Bonferroni correction):
+Baseline: features=16
+Comparison      p-value         Significant     Better    
+1               0.017912        No              No        
+5               0.080388        No              No        
+32              0.000107        Yes             No        
+None            0.000107        Yes             No        
+
+EXPERIMENT 5: ENSEMBLE SIZE IMPACT
+n_Trees      CV F1        CV Std       95% CI Lower    95% CI Upper   
+1            0.8434       0.0539       0.8207          0.8661         
+5            0.9022       0.0477       0.8821          0.9222         
+10           0.9079       0.0478       0.8878          0.9281         
+25           0.9111       0.0479       0.8910          0.9313         
+50           0.9200       0.0480       0.8998          0.9403         
+100          0.9198       0.0500       0.8987          0.9408         
+200          0.9239       0.0457       0.9046          0.9432         
+500          0.9264       0.0461       0.9069          0.9458         
+
+Best n_estimators: 500
+Best CV F1: 0.9264
+
+EXPERIMENT 6: DEPTH × FEATURES INTERACTION (Underfit/Overfit Analysis)
+Depth      Features     CV F1        Train F1     Gap         
+1          1            0.8321       0.8529       0.0209      
+1          5            0.9035       0.9230       0.0195      
+1          16           0.9039       0.9201       0.0162      
+1          32           0.8830       0.9047       0.0217      
+1          None         0.8830       0.9047       0.0217      
+3          1            0.9003       0.9310       0.0307      
+3          5            0.9135       0.9575       0.0440      
+3          16           0.9214       0.9659       0.0445      
+3          32           0.9109       0.9728       0.0619      
+3          None         0.9109       0.9728       0.0619      
+5          1            0.9167       0.9796       0.0629      
+5          5            0.9231       0.9885       0.0653      
+5          16           0.9303       0.9898       0.0596      
+5          32           0.9169       0.9905       0.0736      
+5          None         0.9169       0.9905       0.0736      
+10         1            0.9192       1.0000       0.0808      
+10         5            0.9217       1.0000       0.0783      
+10         16           0.9298       1.0000       0.0702      
+10         32           0.9208       1.0000       0.0792      
+10         None         0.9208       1.0000       0.0792      
+15         1            0.9206       1.0000       0.0794      
+15         5            0.9217       1.0000       0.0783      
+15         16           0.9298       1.0000       0.0702      
+15         32           0.9208       1.0000       0.0792      
+15         None         0.9208       1.0000       0.0792      
+None       1            0.9206       1.0000       0.0794      
+None       5            0.9217       1.0000       0.0783      
+None       16           0.9298       1.0000       0.0702      
+None       32           0.9208       1.0000       0.0792      
+None       None         0.9208       1.0000       0.0792      
+
+======================================================================
+DATASET: CDC Diabetes
+======================================================================
+
+Dataset Statistics:
+  Training Samples: 49484
+  Testing Samples: 21208
+  Number of Features: 21
+  Number of Classes: 2
+  Scoring Method: f1
+
+OPTIMAL HYPERPARAMETERS:
+  Best Max Depth: 10
+  Best Bag Size: 0.5
+  Best Max Features: 10
+  Best n_estimators: 200
+
+FINAL MODEL PERFORMANCE:
+  Test F1-Score:  0.7619 +/- 0.0006
+  Test Accuracy:  0.7486 +/- 0.0005
+  Precision:      0.7236 +/- 0.0004
+  Recall:         0.8046 +/- 0.0009
+
+EXPERIMENT 1: TREE DEPTH IMPACT
+Depth      CV F1        CV Std       95% CI Lower    95% CI Upper    Train F1    
+1          0.7357       0.0057       0.7333          0.7381          0.7367      
+2          0.7415       0.0047       0.7395          0.7434          0.7417      
+3          0.7437       0.0059       0.7412          0.7462          0.7444      
+5          0.7507       0.0045       0.7488          0.7526          0.7517      
+7          0.7555       0.0050       0.7534          0.7576          0.7611      
+10         0.7583       0.0040       0.7566          0.7600          0.7834      
+15         0.7583       0.0043       0.7565          0.7602          0.8683      
+20         0.7532       0.0039       0.7516          0.7549          0.9600      
+25         0.7476       0.0042       0.7459          0.7494          0.9926      
+30         0.7456       0.0043       0.7438          0.7474          0.9953      
+None       0.7461       0.0039       0.7444          0.7477          0.9953      
+
+Best Depth: 10
+Best CV F1: 0.7583
+
+Statistical Testing (Paired t-tests with Bonferroni correction):
+Baseline: depth=10
+Comparison      p-value         Significant     Better    
+1               0.000000        Yes             No        
+2               0.000000        Yes             No        
+3               0.000000        Yes             No        
+5               0.000000        Yes             No        
+7               0.000000        Yes             No        
+15              0.962668        No              No        
+20              0.000000        Yes             No        
+25              0.000000        Yes             No        
+30              0.000000        Yes             No        
+None            0.000000        Yes             No        
+
+EXPERIMENT 2: DEPTH × TREES RELATIONSHIP
+Depth      n_Trees      CV F1        CV Std      
+3          10           0.7385       0.0066      
+3          50           0.7439       0.0043      
+3          100          0.7437       0.0036      
+3          200          0.7447       0.0015      
+7          10           0.7527       0.0003      
+7          50           0.7547       0.0007      
+7          100          0.7555       0.0006      
+7          200          0.7554       0.0004      
+15         10           0.7459       0.0008      
+15         50           0.7567       0.0011      
+15         100          0.7583       0.0009      
+15         200          0.7591       0.0005      
+None       10           0.7064       0.0023      
+None       50           0.7424       0.0010      
+None       100          0.7461       0.0004      
+None       200          0.7483       0.0005      
+
+EXPERIMENT 3: BAG SIZE IMPACT
+Bag Size        CV F1        CV Std       95% CI Lower    95% CI Upper   
+30%             0.7591       0.0045       0.7572          0.7610         
+50%             0.7591       0.0043       0.7573          0.7609         
+70%             0.7590       0.0045       0.7571          0.7609         
+90%             0.7583       0.0046       0.7564          0.7603         
+100%            0.7583       0.0040       0.7566          0.7600         
+
+Best Bag Size: 0.5
+Best CV F1: 0.7591
+
+EXPERIMENT 4: FEATURE SELECTION IMPACT
+Features     CV F1        CV Std       95% CI Lower    95% CI Upper   
+1            0.7531       0.0053       0.7509          0.7554         
+4            0.7583       0.0040       0.7566          0.7600         
+10           0.7587       0.0040       0.7570          0.7604         
+21           0.7582       0.0038       0.7566          0.7598         
+None         0.7582       0.0038       0.7566          0.7598         
+
+Best Features: 10
+Best CV F1: 0.7587
+
+Statistical Testing (Paired t-tests with Bonferroni correction):
+Baseline: features=10
+Comparison      p-value         Significant     Better    
+1               0.000000        Yes             No        
+4               0.262001        No              No        
+21              0.169189        No              No        
+None            0.169189        No              No        
+
+EXPERIMENT 5: ENSEMBLE SIZE IMPACT
+n_Trees      CV F1        CV Std       95% CI Lower    95% CI Upper   
+1            0.7264       0.0059       0.7239          0.7289         
+5            0.7494       0.0037       0.7478          0.7510         
+10           0.7552       0.0035       0.7537          0.7566         
+25           0.7580       0.0037       0.7564          0.7595         
+50           0.7587       0.0037       0.7572          0.7603         
+100          0.7593       0.0039       0.7576          0.7609         
+200          0.7598       0.0039       0.7581          0.7615         
+500          0.7596       0.0044       0.7578          0.7615         
+
+Best n_estimators: 200
+Best CV F1: 0.7598
+
+EXPERIMENT 6: DEPTH × FEATURES INTERACTION (Underfit/Overfit Analysis)
+Depth      Features     CV F1        Train F1     Gap         
+1          1            0.7235       0.7246       0.0011      
+1          4            0.7357       0.7367       0.0010      
+1          10           0.7081       0.7079       -0.0002     
+1          21           0.7089       0.7089       -0.0000     
+1          None         0.7089       0.7089       -0.0000     
+3          1            0.7354       0.7359       0.0005      
+3          4            0.7437       0.7444       0.0007      
+3          10           0.7380       0.7390       0.0010      
+3          21           0.7459       0.7462       0.0003      
+3          None         0.7459       0.7462       0.0003      
+5          1            0.7428       0.7429       0.0001      
+5          4            0.7507       0.7517       0.0010      
+5          10           0.7510       0.7539       0.0028      
+5          21           0.7498       0.7519       0.0020      
+5          None         0.7498       0.7519       0.0020      
+10         1            0.7531       0.7689       0.0158      
+10         4            0.7583       0.7834       0.0251      
+10         10           0.7587       0.7953       0.0366      
+10         21           0.7582       0.8014       0.0432      
+10         None         0.7582       0.8014       0.0432      
+15         1            0.7570       0.8395       0.0824      
+15         4            0.7583       0.8683       0.1100      
+15         10           0.7538       0.8941       0.1403      
+15         21           0.7508       0.9069       0.1561      
+15         None         0.7508       0.9069       0.1561      
+None       1            0.7452       0.9953       0.2502      
+None       4            0.7461       0.9953       0.2493      
+None       10           0.7403       0.9953       0.2550      
+None       21           0.7352       0.9953       0.2601      
+None       None         0.7352       0.9953       0.2601      
+
+======================================================================
+DATASET: Letter Recognition
+======================================================================
+
+Dataset Statistics:
+  Training Samples: 14000
+  Testing Samples: 6000
+  Number of Features: 16
+  Number of Classes: 26
+  Scoring Method: f1_weighted
+
+OPTIMAL HYPERPARAMETERS:
+  Best Max Depth: 30
+  Best Bag Size: None
+  Best Max Features: 4
+  Best n_estimators: 500
+
+FINAL MODEL PERFORMANCE:
+  Test F1-Score:  0.9669 +/- 0.0009
+  Test Accuracy:  0.9668 +/- 0.0009
+  Precision:      0.9672 +/- 0.0009
+  Recall:         0.9668 +/- 0.0009
+
+EXPERIMENT 1: TREE DEPTH IMPACT
+Depth      CV F1        CV Std       95% CI Lower    95% CI Upper    Train F1    
+1          0.2321       0.0232       0.2223          0.2418          0.2081      
+2          0.4200       0.0247       0.4096          0.4303          0.4205      
+3          0.5181       0.0187       0.5102          0.5260          0.5157      
+5          0.6456       0.0132       0.6401          0.6512          0.6516      
+7          0.7493       0.0065       0.7465          0.7520          0.7665      
+10         0.8626       0.0059       0.8601          0.8651          0.9024      
+15         0.9377       0.0026       0.9367          0.9388          0.9926      
+20         0.9503       0.0024       0.9493          0.9513          0.9999      
+25         0.9524       0.0019       0.9516          0.9532          1.0000      
+30         0.9525       0.0023       0.9515          0.9534          1.0000      
+None       0.9522       0.0024       0.9512          0.9532          1.0000      
+
+Best Depth: 30
+Best CV F1: 0.9525
+
+Statistical Testing (Paired t-tests with Bonferroni correction):
+Baseline: depth=30
+Comparison      p-value         Significant     Better    
+1               0.000000        Yes             No        
+2               0.000000        Yes             No        
+3               0.000000        Yes             No        
+5               0.000000        Yes             No        
+7               0.000000        Yes             No        
+10              0.000000        Yes             No        
+15              0.000000        Yes             No        
+20              0.000022        Yes             No        
+25              0.767438        No              No        
+None            0.244553        No              No        
+
+EXPERIMENT 2: DEPTH × TREES RELATIONSHIP
+Depth      n_Trees      CV F1        CV Std      
+3          10           0.4099       0.0088      
+3          50           0.5035       0.0099      
+3          100          0.5181       0.0094      
+3          200          0.5268       0.0046      
+7          10           0.7029       0.0035      
+7          50           0.7438       0.0027      
+7          100          0.7493       0.0014      
+7          200          0.7517       0.0020      
+15         10           0.9037       0.0023      
+15         50           0.9345       0.0004      
+15         100          0.9377       0.0009      
+15         200          0.9394       0.0011      
+None       10           0.9197       0.0010      
+None       50           0.9491       0.0013      
+None       100          0.9522       0.0009      
+None       200          0.9542       0.0005      
+
+EXPERIMENT 3: BAG SIZE IMPACT
+Bag Size        CV F1        CV Std       95% CI Lower    95% CI Upper   
+30%             0.9351       0.0028       0.9339          0.9363         
+50%             0.9439       0.0026       0.9428          0.9450         
+70%             0.9487       0.0022       0.9478          0.9496         
+90%             0.9512       0.0022       0.9503          0.9522         
+100%            0.9525       0.0023       0.9515          0.9534         
+
+Best Bag Size: None
+Best CV F1: 0.9525
+
+EXPERIMENT 4: FEATURE SELECTION IMPACT
+Features     CV F1        CV Std       95% CI Lower    95% CI Upper   
+1            0.9419       0.0033       0.9405          0.9433         
+4            0.9525       0.0023       0.9515          0.9534         
+8            0.9480       0.0038       0.9464          0.9496         
+16           0.9322       0.0052       0.9300          0.9344         
+None         0.9322       0.0052       0.9300          0.9344         
+
+Best Features: 4
+Best CV F1: 0.9525
+
+Statistical Testing (Paired t-tests with Bonferroni correction):
+Baseline: features=4
+Comparison      p-value         Significant     Better    
+1               0.000000        Yes             No        
+8               0.000007        Yes             No        
+16              0.000000        Yes             No        
+None            0.000000        Yes             No        
+
+EXPERIMENT 5: ENSEMBLE SIZE IMPACT
+n_Trees      CV F1        CV Std       95% CI Lower    95% CI Upper   
+1            0.7858       0.0094       0.7819          0.7898         
+5            0.8864       0.0058       0.8839          0.8888         
+10           0.9198       0.0050       0.9177          0.9219         
+25           0.9419       0.0033       0.9405          0.9433         
+50           0.9494       0.0030       0.9482          0.9507         
+100          0.9525       0.0023       0.9515          0.9534         
+200          0.9541       0.0026       0.9530          0.9552         
+500          0.9556       0.0020       0.9547          0.9564         
+
+Best n_estimators: 500
+Best CV F1: 0.9556
+
+EXPERIMENT 6: DEPTH × FEATURES INTERACTION (Underfit/Overfit Analysis)
+Depth      Features     CV F1        Train F1     Gap         
+1          1            0.3003       0.2819       -0.0184     
+1          4            0.2321       0.2081       -0.0239     
+1          8            0.1274       0.1277       0.0003      
+1          16           0.0570       0.0503       -0.0067     
+1          None         0.0570       0.0503       -0.0067     
+3          1            0.5342       0.5452       0.0111      
+3          4            0.5181       0.5157       -0.0024     
+3          8            0.4080       0.4181       0.0101      
+3          16           0.2262       0.1968       -0.0294     
+3          None         0.2262       0.1968       -0.0294     
+5          1            0.6523       0.6679       0.0156      
+5          4            0.6456       0.6516       0.0060      
+5          8            0.6069       0.6120       0.0051      
+5          16           0.4582       0.4422       -0.0159     
+5          None         0.4582       0.4422       -0.0159     
+10         1            0.8418       0.8992       0.0574      
+10         4            0.8626       0.9024       0.0398      
+10         8            0.8433       0.8802       0.0369      
+10         16           0.8061       0.8400       0.0339      
+10         None         0.8061       0.8400       0.0339      
+15         1            0.9205       0.9920       0.0716      
+15         4            0.9377       0.9926       0.0548      
+15         8            0.9320       0.9908       0.0587      
+15         16           0.9115       0.9835       0.0720      
+15         None         0.9115       0.9835       0.0720      
+None       1            0.9424       1.0000       0.0576      
+None       4            0.9522       1.0000       0.0478      
+None       8            0.9479       1.0000       0.0521      
+None       16           0.9323       1.0000       0.0677      
+None       None         0.9323       1.0000       0.0677      
+
+======================================================================
+CROSS-DATASET SUMMARY
+======================================================================
+
+Dataset                   Samples    Features   Best Depth   Best Bag     Best Feat    Best Trees   Test F1   
+--------------------------------------------------------------------------------------------------------------
+Breast Cancer             569        32         5            50%          16           500          0.9091
+CDC Diabetes              70692      21         10           50%          10           200          0.7619
+Letter Recognition        20000      16         30           100%         4            500          0.9669
+
+======================================================================
+END OF REPORT
